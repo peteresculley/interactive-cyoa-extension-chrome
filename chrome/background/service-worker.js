@@ -34,25 +34,25 @@ function pageScript(extId) {
         try {
           const app = document.querySelector('#app').__vue__.$store.state.app;
           if (!app) return;
-    
+
           clearInterval(attachInterval);
           chrome.runtime.sendMessage(extId, { type: 'activate' });
-    
+
           setInterval(updateScores, 500);
         } catch(e) {}
       }, 1000);
-    
+
       setTimeout(() => clearInterval(attachInterval), 5 * 60 * 1000); // stop trying after 5 minutes
-    
+
       function updateScores() {
         const app = document.querySelector('#app').__vue__.$store.state.app;
         if (!app) return;
-    
+
         const points = app.pointTypes.map((point) => ({
           name: point.name,
           value: point.startingSum
         }));
-    
+
         chrome.runtime.sendMessage(extId, { type: 'points', points });
       }
     })();  

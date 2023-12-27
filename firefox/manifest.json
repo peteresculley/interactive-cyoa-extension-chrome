@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "Interactive CYOA assist tool",
+  "version": "1.0.1",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "interactiveassisttool@cyoa"
+    }
+  },
+
+  "action": {
+    "default_icon": {
+      "16": "images/icon16.png",
+      "24": "images/icon24.png",
+      "32": "images/icon32.png"
+    },
+    "default_popup": "action/action.html"
+  },
+  "permissions": ["scripting"],
+  "host_permissions": ["<all_urls>"],
+  "content_scripts": [{
+    "matches": ["<all_urls>"],
+    "js": ["content/content-script.js"]
+  }],
+  "background": {
+    "scripts": ["background/service-worker.js"]
+  },
+  "externally_connectable": {
+    "ids": ["*"],
+    "matches": ["*"]
+  },
+  "description": "A tool to assist filling out interactive CYOAs made with the Interactive CYOA creator",
+  "author": "psculley3@gmail.com",
+  "short_name": "CYOA tool"
+}
