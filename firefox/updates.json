@@ -1,0 +1,12 @@
+{
+  "addons": {
+    "interactiveassisttool@cyoa": {
+      "updates": [
+        {
+          "version": "1.0.2",
+          "update_link": "https://github.com/peteresculley/interactive-cyoa-extension-chrome/releases/download/v1.0.2/interactive-cyoa-extension-firefox.xpi"
+        }
+      ]
+    }
+  }
+}
