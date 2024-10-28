@@ -101,6 +101,34 @@ function removeRowLimits() {
   } catch (e) {}
 }
 
+document.getElementById('remove-randomness-button').onclick = async () => {
+  try {
+    await browser.scripting.executeScript({
+      target: { tabId: (await getCurrentTab()).id },
+      func: removeRandomness
+    });
+  } catch(e) {}
+};
+
+function removeRandomness() {
+  try {
+    (() => {
+      const app = document.querySelector('#app').wrappedJSObject.__vue__.$store.state.app;
+    
+      function allThings(func) {
+        Array.prototype.forEach.call(app.rows, (row) => allObjects(row, func));
+      }
+      function allObjects(row, func) {
+        func(row);
+        if (row.objects && row.objects.length) {
+          Array.prototype.forEach.call(row.objects, (row) => allObjects(row, func));
+        }
+      }
+      allThings((obj) => obj.isInfoRow && (obj.isInfoRow = false));
+    })();
+  } catch (e) {}
+}
+
 document.getElementById('remove-requirements-button').onclick = async () => {
   try {
     await browser.scripting.executeScript({
