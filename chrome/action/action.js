@@ -67,7 +67,15 @@ function updatePoints(points) {
 function updatePoint(index, value) {
   try {
     (() => {
-      const app = document.querySelector('#app').__vue__.$store.state.app;
+      let app = undefined;
+      try {
+        // try vue
+        app = document.querySelector('#app').__vue__.$store.state.app;
+      } catch (e) {}
+      if (!app) {
+        // try svelte
+        app = window.debugApp;
+      }
 
       app.pointTypes[index].startingSum = value;
     })()
@@ -87,7 +95,15 @@ document.getElementById('remove-row-limits-button').onclick = async () => {
 function removeRowLimits() {
   try {
     (() => {
-      const app = document.querySelector('#app').__vue__.$store.state.app;
+      let app = undefined;
+      try {
+        // try vue
+        app = document.querySelector('#app').__vue__.$store.state.app;
+      } catch (e) {}
+      if (!app) {
+        // try svelte
+        app = window.debugApp;
+      }
     
       function allThings(func) {
         app.rows.forEach((row) => allObjects(row, func));
@@ -116,7 +132,15 @@ document.getElementById('remove-randomness-button').onclick = async () => {
 function removeRandomness() {
   try {
     (() => {
-      const app = document.querySelector('#app').__vue__.$store.state.app;
+      let app = undefined;
+      try {
+        // try vue
+        app = document.querySelector('#app').__vue__.$store.state.app;
+      } catch (e) {}
+      if (!app) {
+        // try svelte
+        app = window.debugApp;
+      }
     
       function allThings(func) {
         app.rows.forEach((row) => allObjects(row, func));
@@ -145,7 +169,15 @@ document.getElementById('remove-requirements-button').onclick = async () => {
 function removeRequirements() {
   try {
     (() => {
-      const app = document.querySelector('#app').__vue__.$store.state.app;
+      let app = undefined;
+      try {
+        // try vue
+        app = document.querySelector('#app').__vue__.$store.state.app;
+      } catch (e) {}
+      if (!app) {
+        // try svelte
+        app = window.debugApp;
+      }
 
       function allThings(func) {
         app.rows.forEach((row) => allObjects(row, func));
