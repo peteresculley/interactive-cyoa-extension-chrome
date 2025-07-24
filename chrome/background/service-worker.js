@@ -32,7 +32,16 @@ function pageScript(extId) {
     (() => {
       const attachInterval = setInterval(() => {
         try {
-          const app = document.querySelector('#app').__vue__.$store.state.app;
+          let app = undefined;
+          try {
+            // try vue
+            app = document.querySelector('#app').__vue__.$store.state.app;
+          } catch (e) {}
+          if (!app) {
+            // try svelte
+            app = window.debugApp;
+          }
+
           if (!app) return;
 
           clearInterval(attachInterval);
