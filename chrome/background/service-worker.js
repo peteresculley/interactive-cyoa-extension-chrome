@@ -54,7 +54,16 @@ function pageScript(extId) {
       setTimeout(() => clearInterval(attachInterval), 5 * 60 * 1000); // stop trying after 5 minutes
 
       function updateScores() {
-        const app = document.querySelector('#app').__vue__.$store.state.app;
+        let app = undefined;
+        try {
+          // try vue
+          app = document.querySelector('#app').__vue__.$store.state.app;
+        } catch (e) {}
+        if (!app) {
+          // try svelte
+          app = window.debugApp;
+        }
+
         if (!app) return;
 
         const points = app.pointTypes.map((point) => ({
