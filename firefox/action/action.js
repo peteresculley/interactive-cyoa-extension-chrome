@@ -69,11 +69,11 @@ function updatePoint(index, value) {
       let app = undefined;
       try {
         // try vue
-        app = document.querySelector('#app').__vue__.$store.state.app;
+        app = document.querySelector('#app').wrappedJSObject.__vue__.$store.state.app;
       } catch (e) {}
       if (!app) {
         // try svelte
-        app = window.debugApp;
+        app = window.wrappedJSObject.debugApp;
       }
 
       app.pointTypes[index].startingSum = value;
@@ -96,11 +96,11 @@ function removeRowLimits() {
       let app = undefined;
       try {
         // try vue
-        app = document.querySelector('#app').__vue__.$store.state.app;
+        app = document.querySelector('#app').wrappedJSObject.__vue__.$store.state.app;
       } catch (e) {}
       if (!app) {
         // try svelte
-        app = window.debugApp;
+        app = window.wrappedJSObject.debugApp;
       }
 
       function allThings(func) {
@@ -132,11 +132,11 @@ function removeRandomness() {
       let app = undefined;
       try {
         // try vue
-        app = document.querySelector('#app').__vue__.$store.state.app;
+        app = document.querySelector('#app').wrappedJSObject.__vue__.$store.state.app;
       } catch (e) {}
       if (!app) {
         // try svelte
-        app = window.debugApp;
+        app = window.wrappedJSObject.debugApp;
       }
 
       function allThings(func) {
@@ -168,11 +168,11 @@ function removeRequirements() {
       let app = undefined;
       try {
         // try vue
-        app = document.querySelector('#app').__vue__.$store.state.app;
+        app = document.querySelector('#app').wrappedJSObject.__vue__.$store.state.app;
       } catch (e) {}
       if (!app) {
         // try svelte
-        app = window.debugApp;
+        app = window.wrappedJSObject.debugApp;
       }
 
       function allThings(func) {
