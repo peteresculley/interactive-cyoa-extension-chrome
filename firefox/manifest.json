@@ -21,7 +21,8 @@
   "host_permissions": ["<all_urls>"],
   "content_scripts": [{
     "matches": ["<all_urls>"],
-    "js": ["content/content-script.js"]
+    "js": ["content/content-script.js"],
+    "all_frames": true
   }],
   "background": {
     "scripts": ["background/service-worker.js"]
