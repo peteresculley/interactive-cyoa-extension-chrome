@@ -10,13 +10,13 @@ browser.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
     }
     switch (message.type) {
       case 'points':
-        updatePoints(message.points);
+        updatePoints(message.points, sender.frameId);
         break;
     }
   }
 });
 
-function updatePoints(points) {
+function updatePoints(points, frameId = 0) {
   for (let i = 0; i < points.length; i++) {
     const point = points[i];
 
@@ -36,7 +36,7 @@ function updatePoints(points) {
           const value = parseFloat(valueElem.value);
           getCurrentTab().then((tab) => {
             browser.scripting.executeScript({
-              target: { tabId: tab.id },
+              target: { tabId: tab.id, frameIds: [frameId] },
               func: updatePoint,
               args: [index, value]
             });
@@ -83,8 +83,13 @@ function updatePoint(index, value) {
 
 document.getElementById('remove-row-limits-button').onclick = async () => {
   try {
+    const tab = await getCurrentTab();
+
     await browser.scripting.executeScript({
-      target: { tabId: (await getCurrentTab()).id },
+      target: {
+        tabId: tab.id,
+        allFrames: true
+      },
       func: removeRowLimits
     });
   } catch(e) {}
@@ -119,8 +124,13 @@ function removeRowLimits() {
 
 document.getElementById('remove-randomness-button').onclick = async () => {
   try {
+    const tab = await getCurrentTab();
+
     await browser.scripting.executeScript({
-      target: { tabId: (await getCurrentTab()).id },
+      target: {
+        tabId: tab.id,
+        allFrames: true
+      },
       func: removeRandomness
     });
   } catch(e) {}
@@ -155,8 +165,13 @@ function removeRandomness() {
 
 document.getElementById('remove-requirements-button').onclick = async () => {
   try {
+    const tab = await getCurrentTab();
+
     await browser.scripting.executeScript({
-      target: { tabId: (await getCurrentTab()).id },
+      target: {
+        tabId: tab.id,
+        allFrames: true
+      },
       func: removeRequirements
     });
   } catch (e) {}
