@@ -7,11 +7,15 @@ chrome.runtime.onInstalled.addListener(async () => {
 
 chrome.webNavigation.onCompleted.addListener(async (details) => {
   try {
-    await chrome.scripting.executeScript({
-      target: { tabId: details.tabId },
-      func: pageScript,
-      args: [chrome.runtime.id],
-      world: chrome.scripting.ExecutionWorld.MAIN
+    chrome.webNavigation.getAllFrames({ tabId: details.tabId }, (frames) => {
+      for (const frame of frames) {
+        chrome.scripting.executeScript({
+          target: { tabId: details.tabId, frameIds: [frame.frameId] },
+          func: pageScript,
+          args: [chrome.runtime.id],
+          world: chrome.scripting.ExecutionWorld.MAIN
+        });
+      }
     });
   } catch (e) {}
 });
