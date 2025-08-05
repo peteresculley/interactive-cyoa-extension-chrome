@@ -8,8 +8,18 @@ try {
           app = document.querySelector('#app').wrappedJSObject.__vue__.$store.state.app;
         } catch (e) {}
         if (!app) {
+          try {
+            app = document.querySelector('#app').__vue__.$store.state.app;
+          } catch (e) {}
+        }
+        if (!app) {
           // try svelte
-          app = window.wrappedJSObject.debugApp;
+          try {
+            app = window.wrappedJSObject.debugApp;
+          } catch (e){}
+          if (!app) {
+            app = window.debugApp;
+          }
         }
         if (!app) return;
 
@@ -29,8 +39,18 @@ try {
         app = document.querySelector('#app').wrappedJSObject.__vue__.$store.state.app;
       } catch (e) {}
       if (!app) {
+        try {
+          app = document.querySelector('#app').__vue__.$store.state.app;
+        } catch (e) {}
+      }
+      if (!app) {
         // try svelte
-        app = window.wrappedJSObject.debugApp;
+        try {
+          app = window.wrappedJSObject.debugApp;
+        } catch (e){}
+        if (!app) {
+          app = window.debugApp;
+        }
       }
 
       if (!app) return;
