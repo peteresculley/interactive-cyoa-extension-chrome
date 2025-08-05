@@ -7,8 +7,10 @@ chrome.runtime.onInstalled.addListener(async () => {
 
 chrome.webNavigation.onCompleted.addListener(async (details) => {
   try {
+    const frames = await chrome.webNavigation.getAllFrames({ tabId: details.tabId });
+    const frameIds = frames.map((frame) => frame.frameId);
     await chrome.scripting.executeScript({
-      target: { tabId: details.tabId },
+      target: { tabId: details.tabId, frameIds: frameIds },
       func: pageScript,
       args: [chrome.runtime.id],
       world: chrome.scripting.ExecutionWorld.MAIN
