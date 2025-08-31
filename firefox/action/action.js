@@ -77,6 +77,18 @@ function updatePoint(index, value) {
         } catch (e) {}
       }
       if (!app) {
+        // try nuxt + pinia (ltouroumov version)
+        try {
+          // Try with wrappedJSObject first
+          app = document.getElementById("__nuxt").wrappedJSObject.__vue_app__.$nuxt.$pinia.state._rawValue.project.store._value.file.data;
+        } catch (e) {
+          try {
+            // Fallback to without wrappedJSObject
+            app = document.getElementById("__nuxt").__vue_app__.$nuxt.$pinia.state._rawValue.project.store._value.file.data;
+          } catch (e) {}
+        }
+      }
+      if (!app) {
         // try svelte
         try {
           app = window.wrappedJSObject.debugApp;
@@ -115,6 +127,18 @@ function removeRowLimits() {
         try {
           app = document.querySelector('#app').__vue__.$store.state.app;
         } catch (e) {}
+      }
+      if (!app) {
+        // try nuxt + pinia (ltouroumov version)
+        try {
+          // Try with wrappedJSObject first
+          app = document.getElementById("__nuxt").wrappedJSObject.__vue_app__.$nuxt.$pinia.state._rawValue.project.store._value.file.data;
+        } catch (e) {
+          try {
+            // Fallback to without wrappedJSObject
+            app = document.getElementById("__nuxt").__vue_app__.$nuxt.$pinia.state._rawValue.project.store._value.file.data;
+          } catch (e) {}
+        }
       }
       if (!app) {
         // try svelte
@@ -166,6 +190,18 @@ function removeRandomness() {
         } catch (e) {}
       }
       if (!app) {
+        // try nuxt + pinia (ltouroumov version)
+        try {
+          // Try with wrappedJSObject first
+          app = document.getElementById("__nuxt").wrappedJSObject.__vue_app__.$nuxt.$pinia.state._rawValue.project.store._value.file.data;
+        } catch (e) {
+          try {
+            // Fallback to without wrappedJSObject
+            app = document.getElementById("__nuxt").__vue_app__.$nuxt.$pinia.state._rawValue.project.store._value.file.data;
+          } catch (e) {}
+        }
+      }
+      if (!app) {
         // try svelte
         try {
           app = window.wrappedJSObject.debugApp;
@@ -213,6 +249,18 @@ function removeRequirements() {
         try {
           app = document.querySelector('#app').__vue__.$store.state.app;
         } catch (e) {}
+      }
+      if (!app) {
+        // try nuxt + pinia (ltouroumov version)
+        try {
+          // Try with wrappedJSObject first
+          app = document.getElementById("__nuxt").wrappedJSObject.__vue_app__.$nuxt.$pinia.state._rawValue.project.store._value.file.data;
+        } catch (e) {
+          try {
+            // Fallback to without wrappedJSObject
+            app = document.getElementById("__nuxt").__vue_app__.$nuxt.$pinia.state._rawValue.project.store._value.file.data;
+          } catch (e) {}
+        }
       }
       if (!app) {
         // try svelte
