@@ -104,6 +104,12 @@ function removeRowLimits() {
         app = document.querySelector('#app').__vue__.$store.state.app;
       } catch (e) {}
       if (!app) {
+          try {
+            // try nuxt (ltouroumov version)
+            app = document.getElementById("__nuxt").__vue_app__.$nuxt.$pinia.state._rawValue.project.store._value.file.data;
+          } catch (e) {}
+        }
+      if (!app) {
         // try svelte
         app = window.debugApp;
       }
@@ -144,6 +150,12 @@ function removeRandomness() {
         app = document.querySelector('#app').__vue__.$store.state.app;
       } catch (e) {}
       if (!app) {
+          try {
+            // try nuxt (ltouroumov version)
+            app = document.getElementById("__nuxt").__vue_app__.$nuxt.$pinia.state._rawValue.project.store._value.file.data;
+          } catch (e) {}
+        }
+      if (!app) {
         // try svelte
         app = window.debugApp;
       }
@@ -183,6 +195,12 @@ function removeRequirements() {
         // try vue
         app = document.querySelector('#app').__vue__.$store.state.app;
       } catch (e) {}
+      if (!app) {
+          try {
+            // try nuxt (ltouroumov version)
+            app = document.getElementById("__nuxt").__vue_app__.$nuxt.$pinia.state._rawValue.project.store._value.file.data;
+          } catch (e) {}
+        }
       if (!app) {
         // try svelte
         app = window.debugApp;
